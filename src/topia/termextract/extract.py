@@ -15,7 +15,7 @@
 
 $Id: extract.py 100557 2009-05-30 15:48:36Z srichter $
 """
-import zope.interface
+from zope.interface import implementer
 
 from topia.termextract import interfaces, tag
 
@@ -57,8 +57,8 @@ def _keepterm(multiterm, terms, KEEP_ORIGINAL_SPACING):
     terms.setdefault(word, 0)
     terms[word] += 1
 
+@implementer(interfaces.ITermExtractor)
 class TermExtractor(object):
-    zope.interface.implements(interfaces.ITermExtractor)
 
     def __init__(self, tagger=None, filter=None):
         if tagger is None:
@@ -110,7 +110,7 @@ class TermExtractor(object):
         # Also create the term strength.
         return [
             (word, occur, len(word.split()))
-            for word, occur in terms.items()
+            for word, occur in list(terms.items())
             if self.filter(word, occur, len(word.split()))]
 
     def __call__(self, text, KEEP_ORIGINAL_SPACING=True):

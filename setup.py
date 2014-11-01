@@ -59,7 +59,7 @@ setup (
         ),
     install_requires = [
         'setuptools',
-        'zope.interface',
+        'zope.interface'
         ],
     zip_safe = False,
     )

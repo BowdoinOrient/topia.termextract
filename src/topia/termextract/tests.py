@@ -22,10 +22,10 @@ from zope.testing.doctestunit import DocFileSuite
 
 def printTaggedTerms(terms):
     for term, tag, norm in terms:
-        print (
+        print((
             term + ' '*(16-len(term)) +
             tag + ' '*(6-len(tag)) +
-            norm )
+            norm ))
 
 def test_suite():
     return unittest.TestSuite((
